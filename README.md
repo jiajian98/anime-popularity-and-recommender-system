@@ -37,14 +37,13 @@ zipfile
 rating.csv is extracted and loaded from a ZIP file
 anime.csv is loaded directly
 
-3. Data Cleaning
-Anime table cleaning
+3. Data CleaningAnime table cleaning
 Strip column names
 Convert anime_id, episodes, members to numeric
 Fill missing:
-name → "Unknown"
-rating → median rating
-genre → "Unknown"
+-name → "Unknown"
+-rating → median rating
+-genre → "Unknown"
 Remove or fix irregular values
 
 Rating table cleaning

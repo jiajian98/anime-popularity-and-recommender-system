@@ -1,85 +1,72 @@
-## Anime popularity analysis
+## Anime popularity Analysis & Recommender System
 
-This project analyzes anime ratings using the Anime Recommendation Database 2020, focusing on data cleaning, preprocessing, merging, and exploratory analysis. The analysis is implemented in a Jupyter Notebook (Anime.ipynb).
+## Project Overview
+This project analyzes anime popularity data and builds a simple recommender system to suggest similar anime based on user preferences and content similarity. The goal is to demonstrate an end-to-end data workflow: data cleaning, exploratory data analysis (EDA), feature engineering, and recommendation logic.
 
-The goal is to clean the raw data, prepare a high-quality dataset, and explore patterns such as top-rated anime, genres, and rating distributions.
+The project is designed as a portfolio project for data analytics / data science roles and focuses on explainability and insights rather than complex deep learning models.
+
+## Problem Statement
+With thousands anime titles available, users often struggle to discover shows that match their interests. This project aims to:
+- Understand what factors influence anime popularity
+- Explore relationship between ratings, genres, and user engagement
+- Build a recommender system that suggests similar anime titles
 
 ##  Data Set
+- Source: Public anime dataset (e.g. MyAnimeList / Kaggle)
+- Content:
+Anime title
+Genres
+User ratings
+Popularity / number of members
+- Size: Thousands of anime records
 
-The project uses two datasets:
-anime.csv
-rating.csv.zip (contains rating.csv)
+## Tools & Technologies
+- Python
+- pandas, Numpy
+- matplotlib, seaborn
+- scikit-learn
+- Jupyter Notebook
 
-Anime dataset columns
-anime_id
-name
-genre
-type
-episodes
-rating
-members
+##  Data Preparation
+Key data processing steps include:
+- Handling missing and inconsistent values
+- Cleaning and standardising genre information
+- Converting categorical text features into numerical representations
+- Normalising popularity and rating features
 
-Rating dataset columns
-user_id
-anime_id
-rating (−1 means watched but not rated)
+## Exploratory Data Analysis (EDA)
+The EDA focuses on understanding popularity patterns and user preferences:
+- Distribution of anime ratings and popularity
+- Most common genres and genre combinations
+- Relationship between rating score and popularity
+- Identification of highly rated but less popular anime
+Key observations:
+- Certain genres consistently achieve higher average ratings
+- Popularity does not always correlate strongly with rating score
+- Niche genres often have high ratings but smaller audiences
 
-##  Workflow Overview
-1. Import libraries
+## Recommender System Approach
+A content-based recommender system is implemented:
+- Anime titles are represented using genre and rating features
+- Similarity between anime is computed using cosine similarity
+- Given an input anime, the system returns the top‑N most similar titles
+This approach is suitable when user‑level interaction data is limited.
 
-Uses the following libraries:
-pandas
-numpy
-zipfile
+## Results & Example Output
+- The recommender successfully suggests anime with similar genres and rating profiles
+- Recommendations are intuitive and interpretable
+- Results demonstrate how simple similarity‑based methods can be effective for recommendation tasks
 
-2. Load datasets
+## Limitations & Future Improvements
+- Does not incorporate user‑specific behaviour (collaborative filtering)
+- Genre labels are treated equally without weighting
+Future work could include:
+- User‑item interaction data
+- Matrix factorisation or neural recommenders
 
-rating.csv is extracted and loaded from a ZIP file
-anime.csv is loaded directly
-
-3. Data CleaningAnime table cleaning
-Strip column names
-Convert anime_id, episodes, members to numeric
-Fill missing:
--name → "Unknown"
--rating → median rating
--genre → "Unknown"
-Remove or fix irregular values
-
-Rating table cleaning
-Strip column names
-Convert user_id, anime_id, rating to numeric
-Remove rows where rating = -1
-Drop rows with missing values
-Remove duplicated (user_id, anime_id) pairs, keeping the latest rating
-
-4. Merge datasets
-The rating and anime tables are merged using anime_id:
-df = pd.merge(rating, anime, on="anime_id")
-
-5. Exploratory Data Analysis (EDA)
-Includes visual and statistical exploration such as:
-Rating distribution
-Most rated anime
-Highest average ratings
-Genre frequency
-Average rating by anime type
-User rating patterns
-
-##  Visualisation
-
-The notebook may include charts such as:
-Histogram of user ratings
-Bar charts for genre counts
-Top anime by rating or popularity
-Type distribution (TV, OVA, Movie, etc.)
-Correlation matrix
-All visualizations appear directly inside the notebook.
-
-##  Example Insight
-
-(Modify based on your results)
-Users tend to give mid-range ratings
-Certain genres like Action or Drama appear most frequently
-Some anime with the most members do not have the highest ratings
-TV-type anime dominate the dataset
+## Conclusion
+This project demonstrates practical skills in:
+- Data cleaning and exploratory analysis
+- Feature engineering for real‑world datasets
+- Building an interpretable recommender system
+It showcases the ability to translate raw data into insights and functional data products, relevant for data analyst and data science roles.
